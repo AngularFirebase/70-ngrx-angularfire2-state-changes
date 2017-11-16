@@ -7,24 +7,13 @@ import { createFeatureSelector } from '@ngrx/store';
 export interface Pizza {
     id: string;
     size: string;
+    status: string; // cooking or delivered
 }
 
 // Entity adapter
 export const pizzaAdapter = createEntityAdapter<Pizza>();
 export interface State extends EntityState<Pizza> { }
 
-
-// Default data / initial state
-
-const defaultPizza = {
-    ids: ['123'],
-    entities: {
-        '123': {
-            id: '123',
-            size: 'small'
-        }
-    }
-}
 
 export const initialState: State = pizzaAdapter.getInitialState();
 
@@ -36,13 +25,21 @@ export function pizzaReducer(
 
     switch (action.type) {
 
-        case actions.ADD_ALL:
-            return pizzaAdapter.addAll(action.pizzas, state);
+        case actions.ADDED:
+            return pizzaAdapter.addOne(action.payload, state)
+    
+        case actions.MODIFIED:
+            return pizzaAdapter.updateOne({ 
+                id: action.payload.id, 
+                changes: action.payload 
+            }, state)
+    
+        case actions.REMOVED:
+            return pizzaAdapter.removeOne(action.payload.id, state)
         
-
         default:
             return state;
-        }
+    }
 
 }
 

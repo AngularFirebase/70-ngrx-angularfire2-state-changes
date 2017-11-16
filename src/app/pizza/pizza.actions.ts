@@ -1,35 +1,39 @@
 import { Action } from '@ngrx/store';
 import { Pizza }  from './pizza.reducer';
 
-export const CREATE     = '[Pizzas] Create'
-export const UPDATE     = '[Pizzas] Update'
-export const DELETE     = '[Pizzas] Delete'
+export const QUERY    = '[Pizza] query pizzas';
 
-export const QUERY      = '[Pizzas] Query'
-export const ADD_ALL    = '[Pizzas] Add All'
-export const SUCCESS    = '[Pizzas] Successful firestore write'
+export const ADDED    = '[Pizza] added';
+export const MODIFIED = '[Pizza] modified';
+export const REMOVED  = '[Pizza] removed';
 
+export const UPDATE   = '[Pizza] update';
+export const SUCCESS  = '[Pizza] update success';
+
+// Initial query
 export class Query implements Action {
     readonly type = QUERY;
-    constructor() { }
+    constructor() {}
+  }
+
+// AngularFire2 StateChanges
+export class Added implements Action {
+    readonly type = ADDED;
+    constructor(public payload: Pizza) {}
 }
 
-export class AddAll implements Action {
-    readonly type = ADD_ALL;
-    constructor(public pizzas: Pizza[]) { }
+export class Modified implements Action {
+    readonly type = MODIFIED;
+    constructor(public payload: Pizza) {}
 }
 
-export class Success implements Action {
-    readonly type = SUCCESS;
-    constructor() { }
+export class Removed implements Action {
+    readonly type = REMOVED;
+    constructor(public payload: Pizza) {}
 }
 
 
-export class Create implements Action {
-    readonly type = CREATE;
-    constructor(public pizza: Pizza) { }
-}
-
+// Run a Firestore Update
 export class Update implements Action {
     readonly type = UPDATE;
     constructor(
@@ -38,14 +42,15 @@ export class Update implements Action {
       ) { }
 }
 
-export class Delete implements Action {
-    readonly type = DELETE;
-    constructor(public id: string) { }
+export class Success implements Action {
+    readonly type = SUCCESS;
+    constructor() {}
 }
 
-export type PizzaActions
-= Create
-| Update
-| Delete
-| Query
-| AddAll;
+export type PizzaActions = 
+    Query | 
+    Added | 
+    Modified | 
+    Removed | 
+    Update | 
+    Success;

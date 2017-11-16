@@ -28,9 +28,9 @@ import { EffectsModule } from '@ngrx/effects';
     StoreDevtoolsModule.instrument({
       maxAge: 25
     }),
+    EffectsModule.forRoot([]),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
-    EffectsModule.forRoot([]),
     PizzaModule,
   ],
   providers: [],

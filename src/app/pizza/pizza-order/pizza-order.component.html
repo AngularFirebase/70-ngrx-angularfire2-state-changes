@@ -1,27 +1,21 @@
-<h1>Welcome to Ngrx Pizza!</h1>
+<h3>Welcome to NgRx Pizza!</h3>
 <hr>
 
 <div *ngFor="let pizza of pizzas | async">
 
+  <h4>Pizza ID: {{ pizza.id }} </h4>
+
   <img src="/assets/pizza.jpg" width="200px">
 
-  <h3>Pizza ID: {{ pizza.id }} </h3>
-  <p>Size: {{ pizza.size }}</p>
+  <p>Status: <span class="tag is-info">{{ pizza.status }}</span></p>
 
   
-  <button *ngIf="pizza.size==='small'" class="button is-warning" 
-          (click)="updatePizza(pizza.id, 'large')">
-    Upgrade to Large
-  </button>
 
-  <button *ngIf="pizza.size==='large'" class="button is-success" 
-          (click)="updatePizza(pizza.id, 'small')">
-    Downgrade to Small
+  <button class="button is-success" 
+          (click)="updatePizza(pizza.id, 'delivered')">
+    Update Status to Delivered
   </button> 
 
-  <button class="button is-danger" (click)="deletePizza(pizza.id)">DELETE</button>
-   <hr>
+  <hr>
+
 </div>
-
-
-<button class="button is-primary" (click)="createPizza()">CREATE new Pizza</button>

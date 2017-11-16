@@ -21,21 +21,9 @@ export class PizzaOrderComponent implements OnInit {
   }
 
 
-  createPizza() {
-    const pizza: fromPizza.Pizza = {
-      id: new Date().getUTCMilliseconds().toString(),
-      size: 'small'
-    }
-
-    this.store.dispatch( new actions.Create(pizza) )
+  updatePizza(id, status) {
+    this.store.dispatch( new actions.Update(id, { status }) )
   }
 
-  updatePizza(id, size) {
-    this.store.dispatch( new actions.Update(id, { size: size }) )
-  }
-
-  deletePizza(id) {
-    this.store.dispatch( new actions.Delete(id) )
-  }
 
 }
