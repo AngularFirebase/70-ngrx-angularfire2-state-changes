@@ -4,7 +4,7 @@
 
 # Episode 70 - NgRx + AngularFire Firestore State Changes 
 
-Watch the [NgRx angularfire2 state changes screencast]().
+Watch the [NgRx angularfire2 state changes screencast](https://angularfirebase.com/lessons/state-changes-angularfire2-with-ngrx/).
 
 ## Usage
 
@@ -13,6 +13,4 @@ Watch the [NgRx angularfire2 state changes screencast]().
 - `npm install`
 - `ng serve`
 - Get stuck? Ask me questions on Slack
-
-- 
 
